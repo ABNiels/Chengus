@@ -15,7 +15,7 @@ int main() {
     LL *llPtr;
     BST *DrawTable = malloc(sizeof(BST));
     //setupGameBoardDefault(&game);
-    setupGameBoardFEN(&game, "rnbqkbnr/pppp1ppp/8/4p3/8/8/PPPPPPPP/RNBQKBNR w KQkq c6 0 1");
+    setupGameBoardFEN(&game, "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 1");
     copyGameBoard(&game, &copy);
     
     /*

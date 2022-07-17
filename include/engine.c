@@ -2,6 +2,7 @@
 #include "typedefs.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "asciiHelper.h"
 
 #define MAX(a, b) (a>b)? a:b
 
@@ -9,13 +10,13 @@ static const float centerControl[64] = {
     0.5,	0.5,	0.5,	0.5,	0.5,	0.5,	0.5,	0.5,
     0.5,	0.577,	0.577,	0.577,	0.577,	0.577,	0.577,	0.5,
     0.5,	0.577,	0.707,	0.707,	0.707,	0.707,	0.577,	0.5,
-    0.5,	0.577,	0.707,	1,	1,	0.707,	0.577,	0.5,
-    0.5,	0.577,	0.707,	1,	1,	0.707,	0.577,	0.5,
+    0.5,	0.577,	0.707,	1,	    1,  	0.707,	0.577,	0.5,
+    0.5,	0.577,	0.707,	1,	    1,	    0.707,	0.577,	0.5,
     0.5,	0.577,	0.707,	0.707,	0.707,	0.707,	0.577,	0.5,
     0.5,	0.577,	0.577,	0.577,	0.577,	0.577,	0.577,	0.5,
     0.5,	0.5,	0.5,	0.5,	0.5,	0.5,	0.5,	0.5,
     };
-static const float kingControl[8] = { 1, 0.93, 0.86, 0.79, 0.74, 0.68, 0.63, 0.58, };
+static const float kingControl[8] = { 1.5, 1.19, 0.95, 0.75, 0.6, 0.47, 0.38, 0.3, };
 
 float evaluatePosition(GameBoard * game, BST * DrawTable) {
     float material[2] = {0,0};
@@ -34,19 +35,22 @@ float evaluatePosition(GameBoard * game, BST * DrawTable) {
             // Board Control
             posPtr = ((Piece *)piecePtr->data)->getControlledSquares(game, piecePtr->key);    
             while(posPtr && posPtr->prev) {
-                control[WHITE] += centerControl[(int)posPtr->key] + kingControl[MAX(kingPos[BLACK]/8 - (int)posPtr->key/8, kingPos[BLACK]%8 - (int)posPtr->key%8)];
+                control[WHITE] += centerControl[(int)posPtr->key] + kingControl[MAX(abs(kingPos[BLACK]/8 - (int)posPtr->key/8), abs(kingPos[BLACK]%8 - (int)posPtr->key%8))];
                 posPtr = posPtr->prev;
                 free(posPtr->next);
             }
 
             if(posPtr) {
-                control[WHITE] += centerControl[(int)posPtr->key];
-                control[WHITE] += kingControl[MAX(kingPos[BLACK]/8 - (int)posPtr->key/8, kingPos[BLACK]%8 - (int)posPtr->key%8)];
+                control[WHITE] += centerControl[(int)posPtr->key] + kingControl[MAX(abs(kingPos[BLACK]/8 - (int)posPtr->key/8), abs(kingPos[BLACK]%8 - (int)posPtr->key%8))];
                 free(posPtr);
             }
 
             // King safety
             // Initiative
+            // Weak squares / outposts
+            // trapped pieces
+            // space
+            // passed pawns
             
         }
         piecePtr = piecePtr->next;
@@ -64,21 +68,20 @@ float evaluatePosition(GameBoard * game, BST * DrawTable) {
             // Center Control
             posPtr = ((Piece *)piecePtr->data)->getControlledSquares(game, piecePtr->key);
             while(posPtr && posPtr->prev) {
-                control[BLACK] += centerControl[(int)posPtr->key] + kingControl[MAX(kingPos[WHITE]/8 - (int)posPtr->key/8, kingPos[WHITE]%8 - (int)posPtr->key%8)];
+                control[BLACK] += centerControl[(int)posPtr->key] + kingControl[MAX(abs(kingPos[WHITE]/8 - (int)posPtr->key/8), abs(kingPos[WHITE]%8 - (int)posPtr->key%8))];
                 posPtr = posPtr->prev;
                 free(posPtr->next);
             }
 
             if(posPtr) {
-                control[BLACK] += centerControl[(int)posPtr->key] + kingControl[MAX(kingPos[WHITE]/8 - (int)posPtr->key/8, kingPos[WHITE]%8 - (int)posPtr->key%8)];;
+                control[BLACK] += centerControl[(int)posPtr->key] + kingControl[MAX(abs(kingPos[WHITE]/8 - (int)posPtr->key/8), abs(kingPos[WHITE]%8 - (int)posPtr->key%8))];
                 free(posPtr);
             }
             
         }
         piecePtr = piecePtr->next;
     }
-
-    game->eval = material[WHITE] - material[BLACK] + (control[WHITE] /(control[WHITE] + control[BLACK]) - 0.5);
+    game->eval = material[WHITE] - material[BLACK] + (control[WHITE] - control[BLACK])/40;
     return material[WHITE] - material[BLACK];
 }
 

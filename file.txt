@@ -1,0 +1,97 @@
+V2
+King controlled squares 60
+d2, 6
+d1, 7
+f1, 7
+f2, 6
+e2, 6
+Pawn controlled squares e4
+f5, 3
+d5, 3
+Pawn controlled squares a2
+b3, 5
+Pawn controlled squares b2
+c3, 5
+a3, 5
+Pawn controlled squares c2
+d3, 5
+b3, 5
+Pawn controlled squares d2
+e3, 5
+c3, 5
+Pawn controlled squares f2
+g3, 5
+e3, 5
+Pawn controlled squares g2
+h3, 5
+f3, 5
+Pawn controlled squares h2
+g3, 5
+Rook controlled squares a1
+b1, 7
+a2, 6
+Knight controlled squares b1
+d2, 6
+c3, 5
+a3, 5
+Knight controlled squares g1
+e2, 6
+h3, 5
+f3, 5
+Rook controlled squares h1
+g1, 7
+h2, 6
+King controlled squares 4
+d8, 7
+d7, 6
+e7, 6
+f7, 6
+f8, 7
+Rook controlled squares a8
+a7, 6
+b8, 7
+Knight controlled squares b8
+d7, 6
+c6, 5
+a6, 5
+Knight controlled squares g8
+e7, 6
+h6, 5
+f6, 5
+Rook controlled squares h8
+h7, 6
+g8, 7
+Pawn controlled squares a7
+b6, 5
+Pawn controlled squares b7
+c6, 5
+a6, 5
+Pawn controlled squares c7
+d6, 5
+b6, 5
+Pawn controlled squares d7
+e6, 5
+c6, 5
+Pawn controlled squares e7
+f6, 5
+d6, 5
+Pawn controlled squares f7
+g6, 5
+e6, 5
+Pawn controlled squares g7
+h6, 5
+f6, 5
+Pawn controlled squares h7
+g6, 5
+1038.000000, 1038.000000, 30.435997, 29.583002
+White to play - Evaluation: 0.085299
+rnbqkbnr
+pppppppp
+--------
+--------
+----p---
+--------
+pppp-ppp
+rnbqkbnr
+k, r, n, b, q, b, n, r, p, p, p, p, p, p, p, p, 
+End

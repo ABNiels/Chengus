@@ -1,4 +1,0 @@
-baord[0][0] is a8
-
-copy of board for each move,
-once move determined, free everything else
