@@ -9,6 +9,7 @@
 uint8_t isUpper(char);
 uint8_t isLower(char);
 char toLower(char);
+char toUpper(char);
 uint8_t isNumber(char);
 uint8_t toNumber(char c);
 char toASCII(uint8_t val);

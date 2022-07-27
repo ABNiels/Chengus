@@ -20,6 +20,10 @@ char toLower(char c) {
     return isUpper(c) ? c + 0x20 : isLower(c) ? c : c + 0x61;
 }
 
+char toUpper(char c) {
+    return isLower(c) ? c - 0x20 : isUpper(c) ? c : c + 0x61;
+}
+
 uint8_t isNumber(char c) {
     return ((c >= 0x30) && (c <= 0x39));
 }

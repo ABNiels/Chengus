@@ -15,8 +15,8 @@ int main() {
     LL *llPtr;
     BST *DrawTable = malloc(sizeof(BST));
     //setupGameBoardDefault(&game);
-    setupGameBoardFEN(&game, "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 1");
-    copyGameBoard(&game, &copy);
+    setupGameBoardFEN(&game, "rnbqkbnr/pppp1ppp/8/4p3/4Q3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 1");
+    //copyGameBoard(&game, &copy);
     
     /*
     game.squares[0].piece = NULL;
@@ -29,7 +29,7 @@ int main() {
 
     evaluatePosition(&game, DrawTable);
     printGameBoard(&game);
-    printPlayerPieces(game.players[BLACK]);
+    printPlayerPieces(&game, BLACK);
     //printf("%s\n", int2alg(((Piece *)((Player *)game->players[BLACK])->pieces->data)->square->pos));
     printf("End\n");
 

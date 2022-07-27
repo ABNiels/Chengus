@@ -1,5 +1,7 @@
 .vscode/**
 build/**
+C/build/**
 **/__pycache__/**
 V1/**
 python/**
+rust/**
